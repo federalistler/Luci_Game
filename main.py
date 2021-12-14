@@ -68,12 +68,12 @@ def command_start(update, context: CallbackContext):
         
         addme = InlineKeyboardButton(text="➕BENI GRUBA EKLE➕!", url="https://t.me/LuciGameTRBot?startgroup=a")
         sohbet = InlineKeyboardButton(text="🌐 Support", url="https://t.me/LuciSup")
-        oyun = InlineKeyboardButton(text="Resmi Oyun Grubumuz👨‍💻", url="https://t.me/iron_Blood_Gurup")
-        admin = InlineKeyboardButton(text="Creator👨‍💻", url="https://t.me/A_l_i_y_e_v_d_i")
+        oyun = InlineKeyboardButton(text="Resmi Oyun Grubumuz👨‍💻", url="https://t.me/LuciGameOfficialGrub")
+        admin = InlineKeyboardButton(text="Creator👨‍💻", url="https://t.me/LuciMarka")
 
         keyboard = [[addme],[sohbet],[oyun],[admin]]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        update.message.reply_text('Merhama {username} Ben [Luci](https://t.me/Luci Marka) Tarafından Yazılan Oyun Botuyum\n\n Beni Grubunuzda Yönetici Olarak Ekleyib \n\nOyunu Oynaya Bilirsiz!', reply_to_message_id=True, reply_markup=reply_markup)
+        update.message.reply_text('Merhama {username} Ben [Luci](https://t.me/LuciMarka) Tarafından Yazılan Oyun Botuyum\n\n Beni Grubunuzda Yönetici Olarak Ekleyib \n\nOyunu Oynaya Bilirsiz!', reply_to_message_id=True, reply_markup=reply_markup)
     else:
         chat_id = update.message.chat.id
         user_id = update.message.from_user.id
