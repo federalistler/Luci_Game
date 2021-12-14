@@ -37,10 +37,10 @@ def setup_logger():
 
 
 def help(update, context):
-    update.message.reply_text('Mövcud əmrlər:\n' +
-                              '/basla - Yeni oyun başladmaq\n' +
-                              '/master - Aparıcı olmaq\n' +
-                              '/rating - Qrup üzrə reytinq', reply_to_message_id=True)
+    update.message.reply_text('Oyun Komutları:\n' +
+                              '/basla - Yeni oyun başlatmakn' +
+                              '/master - Master olmak\n' +
+                              '/rating - Grubun Ratingi', reply_to_message_id=True)
 
 
 def button(update, context):
@@ -66,20 +66,20 @@ def button(update, context):
 def command_start(update, context: CallbackContext):
     if update.effective_chat.type == "private":
         
-        addme = InlineKeyboardButton(text="🧚 Qrupa əlavə edin!", url="https://t.me/Nexus_soz_game_bot?startgroup=a")
-        sohbet = InlineKeyboardButton(text="🌐 Support", url="https://t.me/NEXUS_MMC")
-        oyun = InlineKeyboardButton(text="👾 Oyun Qrupumuz", url="https://t.me/iron_Blood_Gurup")
-        admin = InlineKeyboardButton(text="👨🏻‍💻 Sahib", url="https://t.me/A_l_i_y_e_v_d_i")
+        addme = InlineKeyboardButton(text="➕BENI GRUBA EKLE➕!", url="https://t.me/LuciGameTRBot?startgroup=a")
+        sohbet = InlineKeyboardButton(text="🌐 Support", url="https://t.me/LuciSup")
+        oyun = InlineKeyboardButton(text="Resmi Oyun Grubumuz👨‍💻", url="https://t.me/iron_Blood_Gurup")
+        admin = InlineKeyboardButton(text="Creator👨‍💻", url="https://t.me/A_l_i_y_e_v_d_i")
 
         keyboard = [[addme],[sohbet],[oyun],[admin]]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        update.message.reply_text('🇦🇿Şəxsidə oyun olmaz!', reply_to_message_id=True, reply_markup=reply_markup)
+        update.message.reply_text('Merhama {username} Ben [Luci](https://t.me/Luci Marka) Tarafından Yazılan Oyun Botuyum\n\n Beni Grubunuzda Yönetici Olarak Ekleyib \n\nOyunu Oynaya Bilirsiz!', reply_to_message_id=True, reply_markup=reply_markup)
     else:
         chat_id = update.message.chat.id
         user_id = update.message.from_user.id
         username = update.message.from_user.full_name
 
-        logger.info('Got command /basla,'
+        logger.info('Got command /oyna,'
                     'chat_id={},'
                     'user_id'.format(chat_id,
                                      user_id))
@@ -87,7 +87,7 @@ def command_start(update, context: CallbackContext):
         game = get_or_create_game(chat_id)
         game.start()
 
-        update.message.reply_text('Söz Oyunu Başladı✨'.format(username), reply_to_message_id=True)
+        update.message.reply_text(' Oyun Başladı✨'.format(username), reply_to_message_id=True)
 
         set_master(update, context)
 
@@ -104,13 +104,13 @@ def set_master(update, context):
 
     game.set_master(update.message.from_user.id)
 
-    show_word_btn = InlineKeyboardButton("👻Sözə bax", callback_data='show_word')
-    change_word_btn = InlineKeyboardButton("♻️Sözü dəyiş", callback_data='change_word')
+    show_word_btn = InlineKeyboardButton("👻Söze bak", callback_data='show_word')
+    change_word_btn = InlineKeyboardButton("♻️Sözü değiş", callback_data='change_word')
 
     keyboard = [[show_word_btn], [change_word_btn]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text('[{}](tg://user?id={}) sözü başa salır'.format(username,user_id), reply_to_message_id=True, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
+    update.message.reply_text('[{}](tg://user?id={}) sözü anlatio'.format(username,user_id), reply_to_message_id=True, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
 
 def command_master(update: Update, context):
@@ -123,7 +123,7 @@ def command_master(update: Update, context):
         return
 
     if not game.is_master_time_left():
-        update.message.reply_text('Aparıcı olmaq üçün {} saniyə qalıb'.format(game.get_master_time_left()),
+        update.message.reply_text('Master olmak için {} saniye kaldı'.format(game.get_master_time_left()),
                                   reply_to_message_id=True)
         return
 
@@ -205,7 +205,7 @@ def is_word_answered(update, context):
     word = game.get_current_word()
 
     if game.is_word_answered(user_id, text):
-        update.message.reply_text('*{}* sözünü [{}](tg://user?id={}) tapdı✅'.format(word, username,user_id), reply_to_message_id=True, parse_mode=ParseMode.MARKDOWN)
+        update.message.reply_text('*{}* sözünü [{}](tg://user?id={}) buldu✅'.format(word, username,user_id), reply_to_message_id=True, parse_mode=ParseMode.MARKDOWN)
 
         game.update_rating(user_id, username)
 
