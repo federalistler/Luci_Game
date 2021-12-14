@@ -5,7 +5,7 @@ Söz oyunu. 7000-dən çox söz ilə
 
 # Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Aliyevdii/Nexua_Game)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/VentusBey/Luci_Game)
 
 
 # Server
